@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html ng-app = "app.todo">
+<html ng-app = "app">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Go Tours</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
     <link
@@ -21,18 +20,14 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.10.2/css/xeditable.css"
-    />
-    <link
-      rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <!--Loaf CDN script-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.10.2/js/xeditable.min.js"></script>
-    <script src="../public/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular-csp.css" />
+    <script src="assets/js/main/app.js"></script>
   </head>
-  <body ng-controller="todoController">
+  <body ng-controller="EvController">
     <nav class="navbar navbar-expand-lg navbar-light text-capitalize">
       <div class="container">
         <a class="navbar-brand" href="#"
@@ -58,7 +53,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">{{appName}}</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#service">Features</a>
