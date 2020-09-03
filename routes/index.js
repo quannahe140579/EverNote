@@ -14,7 +14,7 @@ router.post("/login", function (req, res) {
       if (result.length != 0) {
         res.render("../views/Home.ejs");
       }else{     
-          res.render("../views/login.ejs");
+        res.render("../views/login.ejs");
       }
     });
   } else { 
@@ -22,4 +22,9 @@ router.post("/login", function (req, res) {
   }
 });
 
+
+router.get("/xyz", function(req, res){
+    console.log("hahsahdasdasd");
+    res.render("login.ejs");
+})
 module.exports = router;

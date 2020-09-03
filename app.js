@@ -25,7 +25,7 @@ mongose.connect(config.getDbConnectionString(),{useUnifiedTopology: true},functi
 });
 
 app.get("/", function(req, res){
-  res.render("login.ejs")
+  res.render("index.ejs")
 })
 
 app.listen(port, function(err){
