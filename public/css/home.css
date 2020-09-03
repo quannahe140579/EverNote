@@ -1,7 +1,24 @@
-.container-fluid{
-    height: auto;
-    background-color: aqua;
+.left{
+    width: 10%;
+    height: 700px;
+    background-color: #1a1a1a;
 }
-h1{
-    color: red;
+.right{
+    width: 90%;
+    height: 700px;
+    background-color: #ffffff;
+}
+.l-right{
+    width: 20%;
+    height: 700px;
+    background-color: #f8f8f8;
+}
+.l-left{
+    width: 80%;
+    height: 700px;
+    background-color: #ffffff;
+}
+.left ul{
+    list-style: none;
+    padding:2px ;
 }

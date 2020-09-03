@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -15,24 +15,44 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="assets/css/home.css"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/home.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid">
-        <h1>This is home page</h1>
-        <div class="left">
-
+      <div class="left">
+        <div>
+          <ul>
+            <li>
+              <!-- Search form -->
+              <input style="margin-top: 5px;"
+                class="form-control"
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </li>
+            <li class="text-center" style="margin-top: 5px;">
+              <button type="button" class="btn btn-default btn-rounded" >New Notes</button>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-star fa-2x"></i>All Notes
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class="right">
-            <div class="l-right">
-
-            </div>
-            <div class="r-right">
-
-            </div>
-        </div>
+      </div>
+      <div class="right">
+        <div class="l-right"></div>
+        <div class="r-right"></div>
+      </div>
     </div>
     <script src="assets/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
