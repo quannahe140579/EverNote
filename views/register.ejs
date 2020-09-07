@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/">
     <link
       href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
-    <link rel="stylesheet" href="assets/css/registerCss.css"/>
+    <link rel="stylesheet" href="assets/css/registerCss.css" type="text/css"/>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Document</title>
@@ -17,7 +18,7 @@
     <div class="col-md-4 col-md-offset-4" id="login">
       <section id="inner-wrapper" class="login">
         <article>
-          <form method="POST" action="/create">
+          <form method="POST" action="/account/sigup/create">
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"
@@ -68,7 +69,6 @@
             <button type="submit" class="btn btn-success btn-block">
               Submit
             </button>
-            
           </form>
         </article>
       </section>
