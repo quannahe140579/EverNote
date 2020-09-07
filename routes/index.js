@@ -5,7 +5,8 @@ router.post("/login", function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   if(username.length == 0 || password.length == 0){
-    res.status(401).render("login");
+    req.flash('ErrorEmpty','Username or password is empty');
+    res.render("login", {error: req.flash('ErrorEmpty')});
     return;
   }
   if (username && password) {
@@ -17,7 +18,8 @@ router.post("/login", function (req, res) {
       if (result.length != 0) {
         res.render("Home.ejs");
       }else{     
-        res.render("login");
+        req.flash("WrongAccount","Username or password is wrong!");
+        res.render("login", {error: req.flash("WrongAccount")});
         return;
       }
     });
@@ -26,20 +28,22 @@ router.post("/login", function (req, res) {
     return;
   }
 });
-
-
-router.get("/xyz", function(req, res){
-    res.render("login.ejs");
-})
-router.get("/sigup",function(req, res){
-  res.render("register.ejs",{empty: "Username or password is not empty"})
+router.get("/account/sigup",function(req, res){
+  res.render("register.ejs",{error: ""})
 })
 router.post("/account/sigup/create", function(req, res){
   var username = req.body.username;
   var password = req.body.password;
+  var passwordCf = req.body.passwordConfirm;
   var email = req.body.email;
   if(username.length == 0 || password.length == 0){
-    res.status(400).render("register.ejs");
+    req.flash("ErrEmpty","Username or password is empty")
+    res.status(400).render("register.ejs",{error: req.flash("ErrEmpty")});
+    return;
+  }
+  if(password != passwordCf){
+    req.flash("ErrDfrPassword","Password is difference");
+    res.status(401).render("register.ejs",{error: req.flash("ErrDfrPassword")});
     return;
   }
   if(username && password){
@@ -47,12 +51,13 @@ router.post("/account/sigup/create", function(req, res){
       username: username
     }, function(err, result){
       if(err){
-        console.log("Loi");
+        
         return;
       };
       if(result.length != 0){
-        console.log(result);
-        res.render("register.ejs");
+        req.flash("ErrAccountExist","Username is existing!");
+        res.status(402).render("register.ejs",{error: req.flash("ErrAccountExist")});
+        return;
       }else{
         var user = {
           username: username,
@@ -63,7 +68,7 @@ router.post("/account/sigup/create", function(req, res){
         userModel.create(user, function(err, result){
           if(err) throw err;
           else{
-            res.render("login.ejs")
+            res.render("login.ejs",{error: ""});
           }
         });
       }
