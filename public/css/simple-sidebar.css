@@ -85,3 +85,15 @@ textarea{
   text-align: center;
   width: 100%;
 }
+.firstElement{
+  border-bottom: 1px #dfe8ed solid;
+  height: 110px;
+}
+.firstElement .firstElement1{
+  font-size: 30px;
+  margin-left: 10px;
+}
+.firstElement .firstElement2{
+  margin-top: 25px;
+  margin-left: 10px;
+}

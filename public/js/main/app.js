@@ -67,15 +67,14 @@ app.controller("EvController", [
       });
     };
 
-    $scope.changeNote = function (note) {  
+    $scope.changeNote = function (note) {
       $scope.currentNote._id = note._id;
       $scope.currentNote.name = note.name;
       $scope.currentNote.content = note.content;
       $scope.currentNote.lastEdit = note.lastEdit;
-      if ( typeof($scope.notes.length) != 0) {
+      if (typeof $scope.notes.length != 0) {
         sort($scope.notes);
       }
-      
     };
 
     $scope.saveNote = function () {
@@ -89,7 +88,7 @@ app.controller("EvController", [
 
     $scope.deleteNote = async function () {
       $scope.loadding = true;
-      var obj = Object.assign({},$scope.currentNote);
+      var obj = Object.assign({}, $scope.currentNote);
 
       console.log(obj);
       await noteTodos.delete($scope.currentNote._id).then(function (result) {
@@ -108,12 +107,18 @@ app.controller("EvController", [
         }
       });
       console.log(obj);
- 
-      noteTodos.postTrash(obj).then(function(){
+
+      noteTodos.postTrash(obj).then(function () {
         $scope.loadding = false;
-      })
+      });
     };
-    $scope.clearTrashs = function () {
+    $scope.clearTrashs = async function () {
+      $scope.disabled = true;
+      await $scope.getTrashs();
+      if (confirm("Do you want clear trash ?") == false) {
+        return;
+      }
+
       $scope.changeNote({
         _id: "",
         name: "",
@@ -122,6 +127,7 @@ app.controller("EvController", [
       });
       noteTodos.clearTrash().then(function (result) {
         $scope.notes = result.data;
+        $scope.disabled = false;
       });
     };
     $scope.getTrashs = function () {

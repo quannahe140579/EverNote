@@ -62,6 +62,14 @@
       </div>
       <!-- /#sidebar-wrapper -->
       <div id="center-page">
+        <div class="firstElement">
+          <div class="firstElement1">
+            All Notes
+          </div>
+          <div class="firstElement2">
+            {{notes.length}} Notes
+          </div>
+        </div>
         <ul style="list-style: none" ng-repeat="note in notes">
           <li class="element" ng-click="changeNote(note)">{{ note.name }}</li>
         </ul>
