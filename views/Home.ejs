@@ -27,20 +27,21 @@
   <body ng-controller="EvController">
     <div class="d-flex" id="wrapper">
       <!-- Sidebar -->
-      <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">Ever Notes</div>
+      <div class="bg-dark border-right" id="sidebar-wrapper">
+        <div style="color: #a6a6a6; text-align: center;font-size: 35px;" class="sidebar-heading">Ever Notes</div>
         <div class="list-group list-group-flush">
           <button
-            class="btn btn-primary bg-light"
-            style="color: black"
+            class="btn btn-primary bg-blue"
+            style="color: aliceblue; margin-bottom: 10px; background-color: #00a82d;border-radius:
+             20px;margin-left: 20px;margin-right: 20px;"
             ng-click="addNewNote()"
           >
             Add Note
           </button>
-          <a href="#" class="list-group-item list-group-item-action bg-light"
+          <a href="#" class="list-group-item-action"
             >Shortcuts</a
           >
-          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="showNotes()"
+          <a href="#" class="list-group-item-action " ng-click="showNotes()"
             >All Notes</a
           >
           <!-- <a href="#" class="list-group-item list-group-item-action bg-light"
@@ -52,10 +53,10 @@
           <a href="#" class="list-group-item list-group-item-action bg-light"
             >Tags</a
           > -->
-          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="getTrashs()"
+          <a href="#" class="list-group-item-action " ng-click="getTrashs()"
             >Trash</a
           >
-          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="clearTrashs()"
+          <a href="#" class="list-group-item-action " ng-click="clearTrashs()"
             >Clear Trash</a
           >
         </div>
