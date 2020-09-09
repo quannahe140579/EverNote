@@ -28,20 +28,30 @@
     <div class="d-flex" id="wrapper">
       <!-- Sidebar -->
       <div class="bg-dark border-right" id="sidebar-wrapper">
-        <div style="color: #a6a6a6; text-align: center;font-size: 35px;" class="sidebar-heading">Ever Notes</div>
+        <div
+          style="color: #a6a6a6; text-align: center; font-size: 35px"
+          class="sidebar-heading"
+        >
+          Ever Notes
+        </div>
+
         <div class="list-group list-group-flush">
           <button
             class="btn btn-primary bg-blue"
-            style="color: aliceblue; margin-bottom: 10px; background-color: #00a82d;border-radius:
-             20px;margin-left: 20px;margin-right: 20px;"
+            style="
+              color: aliceblue;
+              margin-bottom: 10px;
+              background-color: #00a82d;
+              border-radius: 20px;
+              margin-left: 20px;
+              margin-right: 20px;
+            "
             ng-click="addNewNote()"
           >
             Add Note
           </button>
-          <a href="#" class="list-group-item-action"
-            >Shortcuts</a
-          >
-          <a href="#" class="list-group-item-action " ng-click="showNotes()"
+          <a href="#" class="list-group-item-action">Shortcuts</a>
+          <a href="#" class="list-group-item-action" ng-click="showNotes()"
             >All Notes</a
           >
           <!-- <a href="#" class="list-group-item list-group-item-action bg-light"
@@ -53,10 +63,10 @@
           <a href="#" class="list-group-item list-group-item-action bg-light"
             >Tags</a
           > -->
-          <a href="#" class="list-group-item-action " ng-click="getTrashs()"
+          <a href="#" class="list-group-item-action" ng-click="getTrashs()"
             >Trash</a
           >
-          <a href="#" class="list-group-item-action " ng-click="clearTrashs()"
+          <a href="#" class="list-group-item-action" ng-click="clearTrashs()"
             >Clear Trash</a
           >
         </div>
@@ -64,12 +74,8 @@
       <!-- /#sidebar-wrapper -->
       <div id="center-page">
         <div class="firstElement">
-          <div class="firstElement1">
-            All Notes
-          </div>
-          <div class="firstElement2">
-            {{notes.length}} Notes
-          </div>
+          <div class="firstElement1">All Notes</div>
+          <div class="firstElement2">{{ notes.length }} Notes</div>
         </div>
         <ul style="list-style: none" ng-repeat="note in notes">
           <li class="element" ng-click="changeNote(note)">{{ note.name }}</li>
@@ -96,47 +102,26 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#"
-                  >Home <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdown"
-                >
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+              <li>
+                <!-- Search form -->
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
               </li>
             </ul>
           </div>
         </nav>
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-left: 15px; margin-top: 20px;">
           <div class="top-page-content">
             Last edited on {{ currentNote.lastEdit }}
           </div>
           <div class="form-container">
             <form>
-              <div class="input-group mb-3">             
+              <div class="input-group mb-3">
                 <input
                   type="text"
                   placeholder="Title"
@@ -156,14 +141,21 @@
               </div>
 
               <div class="input-group mb-3">
-                <textarea placeholder="Content here"
-                ng-disabled="disabled"
-                style="border: none; outline: none; width: 100%; overflow-y: auto; height: 200px;"
-                aria-label=""
-                aria-describedby="basic-addon1"
-                name="content"
-                ng-model="currentNote.content">
-
+                <textarea
+                  placeholder="Content here"
+                  ng-disabled="disabled"
+                  style="
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    overflow-y: auto;
+                    height: 200px;
+                  "
+                  aria-label=""
+                  aria-describedby="basic-addon1"
+                  name="content"
+                  ng-model="currentNote.content"
+                >
                 </textarea>
                 <!-- <input
                   type="text"
@@ -178,7 +170,13 @@
             </form>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary" ng-click="saveNote()" ng-disabled="disabled">Save</button>
+            <button
+              class="btn btn-primary"
+              ng-click="saveNote()"
+              ng-disabled="disabled"
+            >
+              Save
+            </button>
             <button
               class="btn btn-primary"
               style="margin-left: 10px"
