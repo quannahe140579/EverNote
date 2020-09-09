@@ -9,7 +9,7 @@ app.controller("EvController", [
 
     var getDate = function () {
       var d = new Date();
-      return d.getDate() + " " + d.getMonth() + 1 + ", " + d.getFullYear();
+      return d.getDate() + " " + (parseInt(d.getMonth()) + 1) + ", " + d.getFullYear();
     };
 
     $scope.currentNote = {
@@ -33,6 +33,12 @@ app.controller("EvController", [
         if (err) throw err;
       }
     );
+    function sort(arr){
+      arr.sort(function(a, b){    
+        return a.name - b.name;
+      });
+      console.log($scope.notes)
+    };
 
     $scope.addNewNote = function () {
       $scope.loadding = true;
@@ -53,6 +59,7 @@ app.controller("EvController", [
       $scope.currentNote.name = note.name;
       $scope.currentNote.content = note.content;
       $scope.currentNote.lastEdit = note.lastEdit;
+      sort($scope.notes);
     };
 
     $scope.saveNote = function () {

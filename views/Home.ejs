@@ -124,7 +124,7 @@
           </div>
           <div class="form-container">
             <form>
-              <div class="input-group mb-3">
+              <div class="input-group mb-3">             
                 <input
                   type="text"
                   placeholder="Title"
@@ -143,7 +143,15 @@
               </div>
 
               <div class="input-group mb-3">
-                <input
+                <textarea placeholder="Content here"
+                style="border: none; outline: none; width: 100%; overflow-y: auto; height: 200px;"
+                aria-label=""
+                aria-describedby="basic-addon1"
+                name="content"
+                ng-model="currentNote.content">
+
+                </textarea>
+                <!-- <input
                   type="text"
                   placeholder="Content here"
                   style="border: none; outline: none; width: 100%"
@@ -151,7 +159,7 @@
                   aria-describedby="basic-addon1"
                   name="content"
                   ng-model="currentNote.content"
-                />
+                /> -->
               </div>
             </form>
           </div>
@@ -166,7 +174,7 @@
             </button>
           </div>
           <div style="margin-top: 20px" class="text-center" ng-show="loadding">
-            <span class="fa fa-spinner fa-spin fa-3x"></span>
+            <span class="fa fa-spinner fa-spin fa-2x"></span>
           </div>
         </div>
       </div>

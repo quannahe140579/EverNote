@@ -15,7 +15,6 @@ router.post("/login", function (req, res) {
       err,
       result
     ) {
-      console.log(result);
       if (result.length != 0) {
         res.render("Home.ejs");
       } else {
@@ -30,7 +29,7 @@ router.post("/login", function (req, res) {
   }
 });
 router.get("/account/sigup", function (req, res) {
-  res.render("register.ejs", { error: "" });
+  res.render("register.ejs", { error: " " });
 });
 router.post("/account/sigup/create", function (req, res) {
   var username = req.body.username;
@@ -52,7 +51,7 @@ router.post("/account/sigup/create", function (req, res) {
   if (username && password) {
     userModel.find(
       {
-        username: username,
+        username: username
       },
       function (err, result) {
         if (err) {
@@ -65,6 +64,13 @@ router.post("/account/sigup/create", function (req, res) {
             .render("register.ejs", { error: req.flash("ErrAccountExist") });
           return;
         } else {
+          userModel.find({email: email}, function(err, result){
+            if(err) throw err;
+            if(result.length != 0){
+              req.flash("ErrEmailExist","Email Exist Aready");
+              res.render("register.ejs",{error: req.flash("ErrEmailExist")});
+            }
+          })
           var user = {
             username: username,
             password: password,
