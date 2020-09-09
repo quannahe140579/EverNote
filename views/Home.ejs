@@ -40,7 +40,7 @@
           <a href="#" class="list-group-item list-group-item-action bg-light"
             >Shortcuts</a
           >
-          <a href="#" class="list-group-item list-group-item-action bg-light"
+          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="showNotes()"
             >All Notes</a
           >
           <a href="#" class="list-group-item list-group-item-action bg-light"
@@ -52,8 +52,11 @@
           <a href="#" class="list-group-item list-group-item-action bg-light"
             >Tags</a
           >
-          <a href="#" class="list-group-item list-group-item-action bg-light"
+          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="getTrashs()"
             >Trash</a
+          >
+          <a href="#" class="list-group-item list-group-item-action bg-light" ng-click="clearTrashs()"
+            >Clear Trash</a
           >
         </div>
       </div>
@@ -128,6 +131,7 @@
                 <input
                   type="text"
                   placeholder="Title"
+                  ng-disabled="disabled"
                   style="
                     border: none;
                     font-weight: bold;
@@ -144,6 +148,7 @@
 
               <div class="input-group mb-3">
                 <textarea placeholder="Content here"
+                ng-disabled="disabled"
                 style="border: none; outline: none; width: 100%; overflow-y: auto; height: 200px;"
                 aria-label=""
                 aria-describedby="basic-addon1"
@@ -164,11 +169,12 @@
             </form>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary" ng-click="saveNote()">Save</button>
+            <button class="btn btn-primary" ng-click="saveNote()" ng-disabled="disabled">Save</button>
             <button
               class="btn btn-primary"
               style="margin-left: 10px"
               ng-click="deleteNote()"
+              ng-disabled="disabled"
             >
               Delete
             </button>

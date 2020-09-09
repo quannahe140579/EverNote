@@ -12,6 +12,15 @@ app.factory("noteTodos", ["$http", function($http){
         }, 
         put: function(note){
             return $http.put("/api/note/update", note);
+        },
+        getTrash: function(){
+            return $http.get("/client/trash");
+        },
+        postTrash: function(note){
+            return $http.post("/client/posttrash", note);
+        },
+        clearTrash: function(){
+            return $http.delete("/client/cleartrash");
         }
     }
 }])

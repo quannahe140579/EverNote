@@ -6,10 +6,16 @@ app.controller("EvController", [
     $scope.notes = [];
     $scope.formData = {};
     $scope.loadding = false;
-
+    $scope.disabled = false;
     var getDate = function () {
       var d = new Date();
-      return d.getDate() + " " + (parseInt(d.getMonth()) + 1) + ", " + d.getFullYear();
+      return (
+        d.getDate() +
+        " " +
+        (parseInt(d.getMonth()) + 1) +
+        ", " +
+        d.getFullYear()
+      );
     };
 
     $scope.currentNote = {
@@ -33,14 +39,21 @@ app.controller("EvController", [
         if (err) throw err;
       }
     );
-    function sort(arr){
-      arr.sort(function(a, b){    
+    function sort(arr) {
+      arr.sort(function (a, b) {
         return a.name - b.name;
       });
-      console.log($scope.notes)
+      console.log($scope.notes);
+    }
+    $scope.showNotes = function () {
+      $scope.disabled = false;
+      noteTodos.get().then(function (result) {
+        $scope.notes = result.data;
+      });
     };
 
     $scope.addNewNote = function () {
+      $scope.disabled = false;
       $scope.loadding = true;
       var note = {
         name: "Untitled",
@@ -54,12 +67,15 @@ app.controller("EvController", [
       });
     };
 
-    $scope.changeNote = function (note) {
+    $scope.changeNote = function (note) {  
       $scope.currentNote._id = note._id;
       $scope.currentNote.name = note.name;
       $scope.currentNote.content = note.content;
       $scope.currentNote.lastEdit = note.lastEdit;
-      sort($scope.notes);
+      if ( typeof($scope.notes.length) != 0) {
+        sort($scope.notes);
+      }
+      
     };
 
     $scope.saveNote = function () {
@@ -71,9 +87,12 @@ app.controller("EvController", [
       });
     };
 
-    $scope.deleteNote = function () {
+    $scope.deleteNote = async function () {
       $scope.loadding = true;
-      noteTodos.delete($scope.currentNote._id).then(function (result) {
+      var obj = Object.assign({},$scope.currentNote);
+
+      console.log(obj);
+      await noteTodos.delete($scope.currentNote._id).then(function (result) {
         $scope.notes = result.data;
 
         if (result.data.length == 0) {
@@ -81,13 +100,40 @@ app.controller("EvController", [
           $scope.currentNote.name = "";
           $scope.currentNote.content = "";
           $scope.currentNote.lastEdit = "";
-        }else{
+        } else {
           $scope.currentNote._id = $scope.notes[0]._id;
           $scope.currentNote.name = $scope.notes[0].name;
           $scope.currentNote.content = $scope.notes[0].content;
           $scope.currentNote.lastEdit = $scope.notes[0].lastEdit;
         }
+      });
+      console.log(obj);
+ 
+      noteTodos.postTrash(obj).then(function(){
         $scope.loadding = false;
+      })
+    };
+    $scope.clearTrashs = function () {
+      $scope.changeNote({
+        _id: "",
+        name: "",
+        content: "",
+        lastEdit: "",
+      });
+      noteTodos.clearTrash().then(function (result) {
+        $scope.notes = result.data;
+      });
+    };
+    $scope.getTrashs = function () {
+      $scope.disabled = true;
+      $scope.changeNote({
+        _id: "",
+        name: "",
+        content: "",
+        lastEdit: "",
+      });
+      noteTodos.getTrash().then(function (result) {
+        $scope.notes = result.data;
       });
     };
   },

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var userModel = require("../models/user");
 var noteModel = require("../models/note");
+var trashs = require("../models/trash");
 router.post("/login", function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
@@ -135,6 +136,29 @@ router.delete("/api/note/:id", function (req, res) {
     );
   }
 });
+router.post("/client/posttrash", function(req, res){
+  var obj = {
+    name: req.body.name,
+    content: req.body.content,
+    lastEdit: req.body.lastEdit,
+  };
+
+  trashs.create(obj, function(err, result){
+    if(err) throw err;
+    res.json(result);
+  })
+
+})
+router.delete("/client/cleartrash", function(req, res){
+  trashs.collection.drop();
+  res.json({});
+})
+router.get("/client/trash", function(req, res){
+  trashs.find(function(err, result){
+    if(err) throw err;
+    res.json(result);
+  })
+})
 router.put("/api/note/update", function (req, res) {
   if (!req.body._id) {
     return;
