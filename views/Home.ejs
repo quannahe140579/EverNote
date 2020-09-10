@@ -81,8 +81,9 @@
           >
           Clear Trash
           </div>  -->
+         
           <button ng-show="disabled" ng-click="clearTrashs()"  class="btn btn-primary" style="height: 40px; 
-          width: 100px;margin-left: 120px; margin-top: 10px; background-color: #f8f8f8;
+          width: 100px;margin-left: 120px; margin-top: 0px; background-color: #f8f8f8;
           border: #2599d3 ;color: black;
           margin-bottom: 2px;">
             Clear Trash
@@ -149,6 +150,7 @@
                   aria-describedby="basic-addon1"
                   name="name"
                   ng-model="currentNote.name"
+                  ng-change="change()"
                 />
               </div>
 
@@ -167,6 +169,7 @@
                   aria-describedby="basic-addon1"
                   name="content"
                   ng-model="currentNote.content"
+                  ng-change="change()"
                 >
                 </textarea>
                 <!-- <input
@@ -183,22 +186,22 @@
           </div>
           <div class="btn-group1" style="position: fixed;
           z-index: 999;">
-            <button
+            <!-- <button
               class="btn btn-primary"
               ng-click="saveNote()"
               ng-show="!disabled"
             >
               Save
-            </button>
+            </button> -->
             <button
               class="btn btn-primary"
-              style="margin-left: 10px"
+              style="margin-left: 10px; float: left;"
               ng-click="deleteNote()"
               ng-show="!disabled"
             >
               Delete
             </button>
-            <div style="margin-top: 20px; margin-left: 50px;" ng-show="loadding"  >
+            <div style="margin-left: 5px; float: left; margin-top: 1px;" ng-show="loadding"  >
               <span class="fa fa-spinner fa-spin fa-2x"></span>
             </div>
           </div>

@@ -77,12 +77,10 @@ app.controller("EvController", [
       }
     };
 
-    $scope.saveNote = function () {
-      $scope.loadding = true;
+    $scope.saveNote = function () {  
       $scope.currentNote.lastEdit = getDate();
       noteTodos.put($scope.currentNote).then(function (result) {
         $scope.notes = result.data;
-        $scope.loadding = false;
       });
     };
 
@@ -112,6 +110,11 @@ app.controller("EvController", [
         $scope.loadding = false;
       });
     };
+    $scope.change = function(){
+      setTimeout(function(){
+        $scope.saveNote();
+      }, 1000);
+    }
     $scope.clearTrashs = function () {
       $scope.disabled = true;
  
