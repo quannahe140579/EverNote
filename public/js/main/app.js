@@ -112,9 +112,9 @@ app.controller("EvController", [
         $scope.loadding = false;
       });
     };
-    $scope.clearTrashs = async function () {
+    $scope.clearTrashs = function () {
       $scope.disabled = true;
-      await $scope.getTrashs();
+ 
       if (confirm("Do you want clear trash ?") == false) {
         return;
       }

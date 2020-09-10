@@ -32,7 +32,7 @@ router.post("/login", function (req, res) {
 router.get("/account/sigup", function (req, res) {
   res.render("register.ejs", { error: " " });
 });
-router.post("/account/sigup/create", function (req, res) {
+router.post("/account/sigup/create",  function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   var passwordCf = req.body.passwordConfirm;
@@ -72,13 +72,16 @@ router.post("/account/sigup/create", function (req, res) {
               res.render("register.ejs",{error: req.flash("ErrEmailExist")});
             }
           })
+          
+          
+
           var user = {
             username: username,
             password: password,
             email: email,
           };
-          console.log(user);
-          userModel.create(user, function (err, result) {
+         
+          userModel.create(user, async function (err, result) {
             if (err) throw err;
             else {
               res.render("login.ejs", { error: "" });

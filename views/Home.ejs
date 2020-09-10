@@ -66,16 +66,27 @@
           <a href="#" class="list-group-item-action" ng-click="getTrashs()"
             >Trash</a
           >
-          <a href="#" class="list-group-item-action" ng-click="clearTrashs()"
-            >Clear Trash</a
-          >
+          
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
       <div id="center-page">
         <div class="firstElement">
-          <div class="firstElement1">All Notes</div>
+          <div class="firstElement1">All Notes</div>    
+
           <div class="firstElement2">{{ notes.length }} Notes</div>
+          <!-- <div style="height: 30px; width: 70px; border: #00a82d 1px solid;
+          float: left;margin-left: 150px; margin-top: 10px;"
+          class="btn btn-primary"
+          >
+          Clear Trash
+          </div>  -->
+          <button ng-show="disabled" ng-click="clearTrashs()"  class="btn btn-primary" style="height: 40px; 
+          width: 100px;margin-left: 120px; margin-top: 10px; background-color: #f8f8f8;
+          border: #2599d3 ;color: black;
+          margin-bottom: 2px;">
+            Clear Trash
+          </button>
         </div>
         <ul style="list-style: none" ng-repeat="note in notes">
           <li class="element" ng-click="changeNote(note)">{{ note.name }}</li>
@@ -115,7 +126,8 @@
           </div>
         </nav>
 
-        <div class="container-fluid" style="margin-left: 15px; margin-top: 20px;">
+        <div class="container-fluid" style="margin-left: 15px; margin-top: 20px;position: relative;
+        z-index: 99;">
           <div class="top-page-content">
             Last edited on {{ currentNote.lastEdit }}
           </div>
@@ -149,7 +161,7 @@
                     outline: none;
                     width: 100%;
                     overflow-y: auto;
-                    height: 200px;
+                    height: 500px;
                   "
                   aria-label=""
                   aria-describedby="basic-addon1"
@@ -169,11 +181,12 @@
               </div>
             </form>
           </div>
-          <div class="btn-group">
+          <div class="btn-group1" style="position: fixed;
+          z-index: 999;">
             <button
               class="btn btn-primary"
               ng-click="saveNote()"
-              ng-disabled="disabled"
+              ng-show="!disabled"
             >
               Save
             </button>
@@ -181,14 +194,15 @@
               class="btn btn-primary"
               style="margin-left: 10px"
               ng-click="deleteNote()"
-              ng-disabled="disabled"
+              ng-show="!disabled"
             >
               Delete
             </button>
+            <div style="margin-top: 20px; margin-left: 50px;" ng-show="loadding"  >
+              <span class="fa fa-spinner fa-spin fa-2x"></span>
+            </div>
           </div>
-          <div style="margin-top: 20px" class="text-center" ng-show="loadding">
-            <span class="fa fa-spinner fa-spin fa-2x"></span>
-          </div>
+          
         </div>
       </div>
       <!-- /#page-content-wrapper -->
