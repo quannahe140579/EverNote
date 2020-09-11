@@ -32,6 +32,7 @@ router.post("/login", function (req, res) {
 router.get("/account/sigup", function (req, res) {
   res.render("register.ejs", { error: " " });
 });
+
 router.post("/account/sigup/create",  function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
@@ -134,6 +135,27 @@ router.delete("/api/note/:id", function (req, res) {
           throw err;
         } else {
           getNotes(res);
+        }
+      }
+    );
+  }
+});
+router.delete("/api/note/trash/:id", function (req, res) {
+  if (!req.params.id) {
+    res.status(500).send("ID not found");
+  } else {
+    trashs.remove(
+      {
+        _id: req.params.id,
+      },
+      function (err, result) {
+        if (err) {
+          throw err;
+        } else {
+         trashs.find(function(err, result){
+           if(err) throw err;
+           res.json(result);
+         })
         }
       }
     );

@@ -21,6 +21,9 @@ app.factory("noteTodos", ["$http", function($http){
         },
         clearTrash: function(){
             return $http.delete("/client/cleartrash");
+        },
+        deleteOneTrash: function(id){
+            return $http.delete("/api/note/trash/" + id)
         }
     }
 }])

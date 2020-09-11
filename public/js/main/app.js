@@ -7,6 +7,8 @@ app.controller("EvController", [
     $scope.formData = {};
     $scope.loadding = false;
     $scope.disabled = false;
+    $scope.text = "";
+    
     var getDate = function () {
       var d = new Date();
       return (
@@ -110,10 +112,14 @@ app.controller("EvController", [
         $scope.loadding = false;
       });
     };
+    let timeouteChange = null;
     $scope.change = function(){
-      setTimeout(function(){
+      if (timeouteChange) {
+        clearTimeout(timeouteChange)
+      }
+      timeouteChange = setTimeout(function(){
         $scope.saveNote();
-      }, 1000);
+      }, 3000);
     }
     $scope.clearTrashs = function () {
       $scope.disabled = true;
@@ -133,6 +139,21 @@ app.controller("EvController", [
         $scope.disabled = false;
       });
     };
+    $scope.submit = function(){
+      if($scope.text == ""){
+        return;
+      }else{
+        
+      }
+    }
+    $scope.reBack = function(){
+      noteTodos.post($scope.currentNote).then(function(result){
+        $scope.notes = result.data;
+      })
+      noteTodos.deleteOneTrash($scope.currentNote._id).then(function(result){
+        $scope.notes = result.data;
+      })
+    }
     $scope.getTrashs = function () {
       $scope.disabled = true;
       $scope.changeNote({

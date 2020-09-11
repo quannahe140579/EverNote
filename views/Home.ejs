@@ -66,13 +66,12 @@
           <a href="#" class="list-group-item-action" ng-click="getTrashs()"
             >Trash</a
           >
-          
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
-      <div id="center-page" >
+      <div id="center-page">
         <div class="firstElement">
-          <div class="firstElement1">All Notes</div>    
+          <div class="firstElement1">All Notes</div>
 
           <div class="firstElement2">{{ notes.length }} Notes</div>
           <!-- <div style="height: 30px; width: 70px; border: #00a82d 1px solid;
@@ -81,17 +80,32 @@
           >
           Clear Trash
           </div>  -->
-         
-          <button ng-show="disabled" ng-click="clearTrashs()"  class="btn btn-primary" style="height: 40px; 
-          width: 100px;margin-left: 120px; margin-top: 0px; background-color: #f8f8f8;
-          border: #2599d3 ;color: black;
-          margin-bottom: 2px;">
+
+          <button
+            ng-show="disabled"
+            ng-click="clearTrashs()"
+            class="btn btn-primary"
+            style="
+              height: 40px;
+              width: 100px;
+              margin-left: 120px;
+              margin-top: 0px;
+              background-color: #f8f8f8;
+              border: #2599d3;
+              color: black;
+              margin-bottom: 2px;
+            "
+          >
             Clear Trash
           </button>
         </div>
-        <ul style="list-style: none" ng-repeat="note in notes">
-          <li class="element" ng-click="changeNote(note)">{{ note.name }}</li>
-        </ul>
+        <div class="wap-element">
+          <ul style="list-style: none" ng-repeat="note in notes">
+            <li class="element" ng-click="changeNote(note)">{{ note.name }}
+            
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- Page Content -->
       <div id="page-content-wrapper">
@@ -116,19 +130,29 @@
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li>
                 <!-- Search form -->
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
+                <form ng-submit="submit()">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Search"
+                    aria-label="Search"
+                    ng-model="text"
+                  />
+                </form>
               </li>
             </ul>
           </div>
         </nav>
 
-        <div class="container-fluid" style="margin-left: 15px; margin-top: 20px;position: relative;
-        z-index: 99;">
+        <div
+          class="container-fluid"
+          style="
+            margin-left: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 99;
+          "
+        >
           <div class="top-page-content">
             Last edited on {{ currentNote.lastEdit }}
           </div>
@@ -184,8 +208,7 @@
               </div>
             </form>
           </div>
-          <div class="btn-group1" style="position: fixed;
-          z-index: 999;">
+          <div class="btn-group1" style="position: fixed; z-index: 999">
             <!-- <button
               class="btn btn-primary"
               ng-click="saveNote()"
@@ -195,17 +218,27 @@
             </button> -->
             <button
               class="btn btn-primary"
-              style="margin-left: 10px; float: left;"
+              style="margin-left: 10px; float: left"
               ng-click="deleteNote()"
               ng-show="!disabled"
             >
               Delete
             </button>
-            <div style="margin-left: 5px; float: left; margin-top: 1px;" ng-show="loadding"  >
+            <button
+              class="btn btn-primary"
+              style="margin-left: 10px; float: left"
+              ng-click="reBack()"
+              ng-show="disabled"
+            >
+              ReBack
+            </button>
+            <div
+              style="margin-left: 5px; float: left; margin-top: 1px"
+              ng-show="loadding"
+            >
               <span class="fa fa-spinner fa-spin fa-2x"></span>
             </div>
           </div>
-          
         </div>
       </div>
       <!-- /#page-content-wrapper -->
